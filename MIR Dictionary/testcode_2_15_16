@@ -1,0 +1,4 @@
+python
+from MIR_Dict_fcns import *
+b = '1_0_5_0_10'
+n, coord = BlockToCoord(b)

@@ -1,0 +1,25 @@
+exit()
+python
+from MIR_Dict_fcns import *
+from MIR_Dict_Class import *
+from MIR_Dict_Corner_1 import *
+from MIR_TestCase_DataBase import *
+
+testTree, testBin = GenerateTestTree(6)
+b1 = '0_5_9_10'
+b2 = '5_15_6_10'
+b3 = '15_20_9_10'
+b4 = '15_20_5_8'
+b5 = '0_5_3_7'
+b6 = '5_10_0_4'
+b7 = '10_15_3_5'
+b8 = '10_15_0_2'
+b9 = '15_20_0_1'
+blist = [b1, b2, b3, b4, b5, b6, b7, b8, b9]
+
+
+for b in blist:
+	print b
+	print PotentialChain_C1(b, testTree)
+	print '----------------------'
+
