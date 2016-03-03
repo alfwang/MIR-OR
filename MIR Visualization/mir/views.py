@@ -33,5 +33,5 @@ def parseResult(request):
         return render(request, 'mir/home.html', context)
     dataset = 'mir/static/datasets/' + request.GET['dataset'] + '.txt'
     context['dataset'] = request.GET['dataset'] + '.txt'
-    context['totalNumBin'], context['binList'], context['fullJobList'] = MainBatch(dataset)
+    context['totalNumBin'], context['utilization'], context['jobList'], context['binList'], context['fullJobList'] = MainBatch(dataset)
     return render(request, 'mir/result.html', context)

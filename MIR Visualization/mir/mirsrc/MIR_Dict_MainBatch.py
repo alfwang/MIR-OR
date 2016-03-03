@@ -80,10 +80,10 @@ def MainBatch(filename):
 	totalJobArea = 0
 	for job in fullJobList:
 		totalJobArea += job.area
-	Utilization = (totalJobArea * 1.0) / (W * L * totalNumBin)
+	utilization = (totalJobArea * 1.0) / (W * L * totalNumBin)
 
 
-	return	totalNumBin, Utilization, binList, fullJobList
+	return	totalNumBin, utilization, jobList, binList, fullJobList
 
 
 
