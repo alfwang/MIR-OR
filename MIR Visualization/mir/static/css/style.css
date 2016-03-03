@@ -1,0 +1,102 @@
+body {
+/*	background-color: #B8B899; */
+	background-color: #EEEEEE;
+	font-size: 120%;
+	margin: 50px;
+	font-family: 'Raleway', sans-serif;
+}
+
+h1{
+	text-align: center;
+}
+
+div#lnr {
+	text-align: center;
+}
+
+div.content {
+	margin-top: 150px;
+}
+
+table {
+	margin: auto;
+}
+
+tr#top {
+	font-size: 300%;
+	background-color: #BBBBBB;
+}
+
+table#top {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 20;
+	width: 100%;
+	height: 45px;
+	width: 100%;
+	border-spacing: 0px;	
+	text-align: center;
+	box-shadow: 5px 5px 2px #DDDDDD;
+}
+
+td#title {
+	text-align: left;
+}
+
+td.upright {
+	font-size: 40%;
+	text-align: right;
+	color: #5E3119;
+}
+
+a:link {
+    color: #333399;
+    text-decoration: none;
+}
+
+a:visited {
+/*    color: #FC9D9A; */
+	color: #333399;
+    text-decoration: none;
+}
+
+a:hover {
+/*    color: #FE4365; */
+	color: #FFCC00;
+}
+
+a:active {
+    color: #FC9D9A;
+}
+
+table.post {
+	height: 200px;
+	width: 100%;
+	background-color: #F9CDAD;
+	box-shadow: 10px 10px 5px #888888;
+	border-radius: 15px;
+}
+
+td.postprofile {
+	width: 150px;
+	text-align: center;
+	vertical-align: top;
+}
+
+td.posttext {
+	vertical-align: top;
+	padding: 25px;
+}
+
+a.upright {
+	margin: 15px;
+}
+
+p.error {
+	text-align: center;
+}
+
+ul li {
+	list-style-type: none;
+}

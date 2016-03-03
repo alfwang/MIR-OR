@@ -1,0 +1,35 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+	<div id="lnr">
+    <br>
+        <div align="center">
+        {% if  pic.picture %}
+            <img src="{% url 'photo' pic.id %}" alt="{{pic.text}}" width="200px">
+                <br>
+        {% else %}
+            {% load static %}
+            <img src="{% static "image/default.jpg" %}" alt="default" width="200px">
+        {% endif %}
+        </div>
+        <form enctype="multipart/form-data" action="{% url 'add-pic' %}" method="post">
+            {{form_pic}}
+            {% csrf_token %}
+            <input type="submit" value="Save" />
+        </form>       
+        <br>
+        <form method="post" action="{% url 'profile_edit' %}">
+        <table>
+            {{form}}
+        </table>
+
+        <input type="submit" value="Save" />
+        {% csrf_token %}
+        </form>
+
+    </div>
+{% endblock %}

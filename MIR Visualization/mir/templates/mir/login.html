@@ -1,0 +1,39 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block heading %}
+    <h1>Welcome! Please login to see the posts.</h1>
+{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <p class="error" style="color:red">
+            Incorrect user name and password.
+        </p>
+    {% endif %}
+
+    <div id = "lnr">
+        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+            <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            </table>
+
+            <input type="submit" value="Login" />
+            <a href="{% url 'registration' %}">Register</a>
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% csrf_token %}
+        </form>
+    </div>
+
+{% endblock %}
+

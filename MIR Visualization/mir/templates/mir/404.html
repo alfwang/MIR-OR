@@ -1,0 +1,21 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block title %}
+	Error
+{% endblock %}
+
+{% block heading %}
+{% endblock %}
+
+
+{% block content %}
+	{% load static %}
+	<div class="404" style="text-align: center">
+	<img src="{% static 'image/cry.gif' %}" alt="cry" style="width:100px;height:100px">
+	An error takes place.
+	<br>
+	<img src="{% static 'image/chuo.gif' %}" alt="chuo" style="width:100px;height:100px">
+	Click <a href="/global">here</a> to go back to post board.
+	<img src="{% static 'image/jian.gif' %}" alt="jian" style="width:100px;height:100px">
+	</div>
+{% endblock %}

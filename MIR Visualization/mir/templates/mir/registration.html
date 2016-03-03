@@ -1,0 +1,29 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block heading %}
+<h1>Register your own ID now!</h1>
+{% endblock %}
+
+{% block content %}
+    {% for error in errors %}
+        <p style="color: red">
+            {{ error }}
+        </p>
+    {% endfor %}
+    <div id="lnr">
+        <form method="post" action="{% url 'registration' %}">
+        <table>
+            {{form}}
+        </table>
+
+        <input type="submit" value="Register" />
+        <a href="{% url 'django.contrib.auth.views.login' %}">Login</a>
+        {% csrf_token %}
+        </form>
+
+    </div>
+{% endblock %}

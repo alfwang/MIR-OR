@@ -1,0 +1,104 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/local.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% for error in errors %}
+        <p class="error" style="color:red">
+            {{error}}
+        </p>
+    {% endfor %}
+
+        <div align="center">
+        {% if  pic.picture %}
+            <img src="{% url 'photo' pic.id %}" alt="{{pic.text}}" width="200px">
+                <br>
+        {% else %}
+            {% load static %}
+            <img src="{% static "image/default.jpg" %}" alt="default" width="200px">
+        {% endif %}
+        </div>
+
+
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td>{{profile.user.username}}</td>
+            </tr>
+            <tr>
+                <td>Firstname:</td>
+                <td>{{profile.user.first_name}}</td>
+            </tr>
+            <tr>
+                <td>Lastname:</td>
+                <td>{{profile.user.last_name}}</td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td>{{profile.age}}</td>
+            </tr>
+            <tr>
+                <td>Short bibliography:</td>
+                <td>{{profile.short_bio}}</td>
+            </tr>
+            
+            <tr class="follow">
+                {% if not own %}
+                <td></td>
+                    <td><a href="{% url 'follow' profile.user.id %}">{{Follow}}</a></td>
+                {% endif %}
+            </tr>
+            
+
+        </table>
+
+    <p>
+        Posts:
+        <ul id='newposts'>
+            <p id='unique' hidden>{% csrf_token %}</p>
+            {% for a, b, c in pairs %}
+                <p hidden class="hid">{{a.id}}</p>
+                <table class="post">
+                    <tr> 
+                        <td class="postprofile">
+                        {% if b %}
+                            <img src="{% url 'photo' b.id %}" alt="profile_pic" width="100px">
+                        {% else %}
+                            {% load static %}
+                            <img src="{% static "image/default.jpg" %}" alt="default" width="100px">
+                        {% endif %}
+                        </td>
+                        <td class="posttext">
+                        Posted by <a class="user" href="{% url 'profile' a.user.id %}">{{a.user.username}}</a> at {{a.time}}
+                        <br>
+                        {{a.text}}
+                        <br>
+                            <input type="text" name="comment" id="newcomment_{{a.id}}">
+                            <button type="button" onclick="comment({{a.id}});">Comment</button>
+                        <div id="post_id_{{a.id}}" class="rm">
+                            {% for x, y in c %}
+                                <li>
+                                    {% if y %}
+                                        <img src="{% url 'photo' y.id %}" alt="profile_pic" width="60px">
+                                    {% else %}
+                                        {% load static %}
+                                        <img src="{% static "image/default.jpg" %}" alt="default" width="60px">
+                                    {% endif %}
+                                    {{x.text}}, by <a class='user' href="{% url 'profile' x.user.id %}">{{x.user.username}}</a>at{{x.time}}</li>
+                            {% endfor %}
+                        </div>                       
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}
