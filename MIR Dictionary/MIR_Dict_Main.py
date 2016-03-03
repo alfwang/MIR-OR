@@ -10,9 +10,7 @@ from MIR_Dict_DataFileNames import *
 
 
 def main():
-	# Reading file ---------------------------------------------------------------------------------
-	print 
-	filename = input('Enter the dataset name:\n')
+	# Reading file ---------------------------------------------------------------------------------	filename = input('Enter the dataset name:\n')
 	while filename not in dataFileNames:
 		filename = input('Invalid data file, enter again.\n')
 	print 'Dataset ( ', filename, ' )load successfully'

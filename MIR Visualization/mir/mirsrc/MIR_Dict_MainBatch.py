@@ -76,7 +76,14 @@ def MainBatch(filename):
 
 
 	# DisplayFinalResult(totalNumBin, binList, fullJobList)
-	return	totalNumBin, binList, fullJobList
+
+	totalJobArea = 0
+	for job in fullJobList:
+		totalJobArea += job.area
+	Utilization = (totalJobArea * 1.0) / (W * L * totalNumBin)
+
+
+	return	totalNumBin, Utilization, binList, fullJobList
 
 
 
@@ -86,19 +93,19 @@ def MainBatch(filename):
 
 
 
-if __name__ == '__main__':
-	result_BinUsed = {}
-	result_Detailed = {}
-	for dataset in dataFileNames:
-		totalNumBin, binList, fullJobList = MainBatch(dataset)
-		result_BinUsed[dataset] = totalNumBin
-		result_Detailed[dataset] = [binList, fullJobList]
+# if __name__ == '__main__':
+# 	result_BinUsed = {}
+# 	result_Detailed = {}
+# 	for dataset in dataFileNames:
+# 		totalNumBin, binList, fullJobList = MainBatch(dataset)
+# 		result_BinUsed[dataset] = totalNumBin
+# 		result_Detailed[dataset] = [binList, fullJobList]
 	
-	print '\n\n\n\n\n\n---------------------- Results: ----------------------\n'
-	DataSet = result_BinUsed.keys()
-	DataSet.sort()
-	for r in DataSet:
-		print r, ' consumes ', result_BinUsed[r], 'bins\n'
+# 	print '\n\n\n\n\n\n---------------------- Results: ----------------------\n'
+# 	DataSet = result_BinUsed.keys()
+# 	DataSet.sort()
+# 	for r in DataSet:
+# 		print r, ' consumes ', result_BinUsed[r], 'bins\n'
 		
 
 
