@@ -5,7 +5,6 @@ from MIR_Dict_Corner_2 import *
 from MIR_Dict_Corner_3 import *
 from MIR_Dict_Corner_4 import *
 from MIR_Dict_FitUpdate import *
-from MIR_TestCase_DataBase import *
 from MIR_Dict_DataFileNames import *
 
 

@@ -13,4 +13,18 @@
 <h1>
 	MIR Display
 </h1>
+
+{% if err_msg %}
+<h4>{{ err_msg }}</h4>
+{% endif %}
+
+<form method = "get" action = "{% url 'result' %}">
+	<select name = 'dataset'>
+		{% for dataset in datasetnames %}
+		<option value = {{ dataset }}>{{ dataset }}</option>
+		{% endfor %}
+	</select>
+	<button type="submit">Go!</div>
+</form>
+
 </body>
