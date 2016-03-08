@@ -60,7 +60,8 @@ def MainBatch(filename):
 				treeAfter = _treeAfter
 				mirCoord = _mirCoord
 				stackFeasibility = _binFeasibility
-
+				binScore = _binScore
+			
 				
 
 		# If some bin in the stack is feasible, place the job in the bin and update

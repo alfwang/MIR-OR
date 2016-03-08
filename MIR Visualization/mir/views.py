@@ -10,7 +10,7 @@ from mir.models import *
 from django.http import HttpResponse, Http404
 import json
 import sys
-sys.path.append(sys.path[0] + '\\mir\\mirsrc')
+sys.path.append(sys.path[0] + '/mir/mirsrc')
 from MIR_Dict_MainBatch import MainBatch
 
 def home(request):
