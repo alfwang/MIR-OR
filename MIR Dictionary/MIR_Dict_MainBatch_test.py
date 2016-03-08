@@ -9,10 +9,10 @@ from MIR_TestCase_DataBase import *
 from MIR_Dict_DataFileNames import *
 
 
-def main():
+def MainBatch_test(filename):
 	# Reading file ---------------------------------------------------------------------------------	filename = input('Enter the dataset name:\n')
-	while filename not in dataFileNames:
-		filename = input('Invalid data file, enter again.\n')
+	# while filename not in dataFileNames:
+	# 	filename = input('Invalid data file, enter again.\n')
 	print 'Dataset ( ', filename, ' )load successfully'
 
 	numJobs, binDimension, jobList = ReadData(filename)
@@ -37,6 +37,10 @@ def main():
 
 	# Iterate through every job
 	for job in fullJobList:
+		
+		# for testing purpose only
+		print '\nConsidering Job # ', job.index, '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+
 		binScore = -1
 		cornerPlacement = []
 		placementBlock = []
@@ -46,13 +50,21 @@ def main():
 		mirAfter = -1
 		treeAfter = []
 		mirCoord = []
+		
 
 		# iterate through every bin
 		for i, b in enumerate(binList):
 			# _ represents the bin that is being currently considered.
 			_binFeasibility, _placement, _placementBlock, _binScore, _mirAfter, _treeAfter, _mirCoord= JobBinFit(b, job)
+			
+			# For testing purpose
+			if _binFeasibility:
+				print 'Feasible Bin: ', i + 1, 'with binScore: ', _binScore
+
+
 			if _binFeasibility and _binScore > binScore:
 				optBinIndex = i
+				print 'Update bin Decision -> Bin # ', i + 1
 				cornerPlacement = _placement
 				placementBlock = _placementBlock
 				stackScore = _binScore
@@ -72,12 +84,15 @@ def main():
 
 		#If no bin in the stack is feasible, create a new bin and place the job
 		else:
+
 			totalNumBin += 1
+			print 'Create a new bin -> Bin # ', totalNumBin
 			binList.append(mirBin(totalNumBin, W, L))
 			UpdateFirstJob(binList[-1], job)
 
 
-	DisplayFinalResult(totalNumBin, binList, fullJobList)
+	# DisplayFinalResult(totalNumBin, binList, fullJobList)
+	return	totalNumBin, binList, fullJobList
 
 
 
@@ -87,42 +102,32 @@ def main():
 
 
 
-
-
-
-
-	# for job_dta in fullJobList:
-	# 	binScore = []
-	# 	for b in binList:
-	# 		fit the job in the current bin
-	# 		if feasible:
-	# 			binScore.append(binScore)
-
-	# 	if max(binScore) > 0:
-	# 		update(bin)
-	# 		update(job)
-	# 	else:
-	# 		Create a new bin
-	# 		update(bin)
-	# 		update(job)
-
-	# Display Final Decision
-	# Visualize
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-	main()
+	# result_BinUsed = {}
+	# result_Detailed = {}
+	# for dataset in dataFileNames:
+	# 	totalNumBin, binList, fullJobList = MainBatch(dataset)
+	# 	result_BinUsed[dataset] = totalNumBin
+	# 	result_Detailed[dataset] = [binList, fullJobList]
+	
+	# print '\n\n\n\n\n\n---------------------- Results: ----------------------\n'
+	# DataSet = result_BinUsed.keys()
+	# DataSet.sort()
+	# for r in DataSet:
+	# 	print r, ' consumes ', result_BinUsed[r], 'bins\n'
+	filename = 'ngcut3.txt'
+	totalNumBin, binList, fullJobList = MainBatch_test(filename)
+	for j in fullJobList:
+		DisplayJob(j)
+
+
+
+
+
+
+
+
+
+
+
+
