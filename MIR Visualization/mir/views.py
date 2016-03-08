@@ -33,5 +33,33 @@ def parseResult(request):
         return render(request, 'mir/home.html', context)
     dataset = 'mir/static/datasets/' + request.GET['dataset'] + '.txt'
     context['dataset'] = request.GET['dataset'] + '.txt'
-    context['totalNumBin'], context['utilization'], context['jobList'], context['binList'], context['fullJobList'] = MainBatch(dataset)
+    context['utilization'], context['jobList'], binList, fullJobList = MainBatch(dataset)
+    
+    context['binNum'] = len(binList)
+    context['binW'], context['binH'] = binList[0].dimension[0], binList[0].dimension[1]
+    binIndex = [i * (context['binH'] + 20) + 100 for i in range(len(binList))]
+    jobReady = parseJobList(fullJobList, context['binNum'], context['binH'])
+    context['bins'] = [[x] + [y] for x, y in zip(binIndex, jobReady)]
+    # print "############", context['bins']
+
+
+
     return render(request, 'mir/result.html', context)
+
+def parseJobList(fullJobList, binNum, H):
+    jobReady = [[] for i in range(binNum)]
+    for x in fullJobList:
+        # print x.index, x.coord
+        jobCoord, jobCat, w, h = x.coord[:2], x.coord[2], x.dimension[0], x.dimension[1]
+        if jobCat == 1:
+            jobCoord = [H - jobCoord[1] - h, jobCoord[0]]
+        elif jobCat == 2:
+            jobCoord = [H - jobCoord[1], jobCoord[0]]
+        elif jobCat == 3:
+            jobCoord = [H - jobCoord[1], jobCoord[0] - w]
+        elif jobCat == 4:
+            jobCoord = [H - jobCoord[1] - h, jobCoord[0] - w]
+        jobReady[x.bin - 1].append([x.index, jobCoord[0], jobCoord[1], w, h])
+        # print jobCoord
+    # return [[[jobs[i] for jobs in oneBin] for i in range(5)] for oneBin in jobReady]
+    return jobReady

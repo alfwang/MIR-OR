@@ -83,7 +83,7 @@ def MainBatch(filename):
 	utilization = (totalJobArea * 1.0) / (W * L * totalNumBin)
 
 
-	return	totalNumBin, utilization, jobList, binList, fullJobList
+	return	utilization, jobList, binList, fullJobList
 
 
 
