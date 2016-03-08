@@ -51,6 +51,20 @@ def ReadData(filename):
 	# print Job_List
 	return numJobs, binDimension, jobList
 
+def DataSummary(filename):
+	numJobs, binDimension, jobList = ReadData(filename)
+	totalJobArea = 0
+	for job in jobList:
+		totalJobArea += job[0] * job[1]
+	conLowerBound = (totalJobArea * 1.0) / (binDimension[0] * binDimension[1])
+	print '---------------------'
+	print 'Data Set: ', filename
+	print 'Number of jobs:', numJobs, '/', len(jobList)
+	print 'totalJobArea: ', totalJobArea
+	print 'binDimension: ', binDimension
+	print 'conLowerBound', conLowerBound
+	return totalJobArea, binDimension, conLowerBound
+
 
 def Presort_1(jobList):
 	# Sorting all the job in descending order regarding area

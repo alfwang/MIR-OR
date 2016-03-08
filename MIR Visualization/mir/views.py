@@ -37,7 +37,7 @@ def parseResult(request):
     
     context['binNum'] = len(binList)
     context['binW'], context['binH'] = binList[0].dimension[0], binList[0].dimension[1]
-    binIndex = [i * (context['binH'] + 20) + 100 for i in range(len(binList))]
+    binIndex = [i * (context['binH'] + 20) + 500 for i in range(len(binList))]
     jobReady = parseJobList(fullJobList, context['binNum'], context['binH'])
     context['bins'] = [[x] + [y] for x, y in zip(binIndex, jobReady)]
     # print "############", context['bins']

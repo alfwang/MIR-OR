@@ -5,6 +5,7 @@ from MIR_Dict_Corner_2 import *
 from MIR_Dict_Corner_3 import *
 from MIR_Dict_Corner_4 import *
 from MIR_Dict_FitUpdate import *
+# from MIR_TestCase_DataBase import *
 from MIR_Dict_DataFileNames import *
 
 
@@ -59,7 +60,8 @@ def MainBatch(filename):
 				treeAfter = _treeAfter
 				mirCoord = _mirCoord
 				stackFeasibility = _binFeasibility
-
+				binScore = _binScore
+			
 				
 
 		# If some bin in the stack is feasible, place the job in the bin and update
@@ -73,10 +75,7 @@ def MainBatch(filename):
 			totalNumBin += 1
 			binList.append(mirBin(totalNumBin, W, L))
 			UpdateFirstJob(binList[-1], job)
-
-
-	# DisplayFinalResult(totalNumBin, binList, fullJobList)
-
+			
 	totalJobArea = 0
 	for job in fullJobList:
 		totalJobArea += job.area
@@ -86,26 +85,25 @@ def MainBatch(filename):
 	return	utilization, jobList, binList, fullJobList
 
 
-
 				
 
 
 
 
 
-# if __name__ == '__main__':
-# 	result_BinUsed = {}
-# 	result_Detailed = {}
-# 	for dataset in dataFileNames:
-# 		totalNumBin, binList, fullJobList = MainBatch(dataset)
-# 		result_BinUsed[dataset] = totalNumBin
-# 		result_Detailed[dataset] = [binList, fullJobList]
+if __name__ == '__main__':
+	result_BinUsed = {}
+	result_Detailed = {}
+	for dataset in dataFileNames:
+		totalNumBin, binList, fullJobList = MainBatch(dataset)
+		result_BinUsed[dataset] = totalNumBin
+		result_Detailed[dataset] = [binList, fullJobList]
 	
-# 	print '\n\n\n\n\n\n---------------------- Results: ----------------------\n'
-# 	DataSet = result_BinUsed.keys()
-# 	DataSet.sort()
-# 	for r in DataSet:
-# 		print r, ' consumes ', result_BinUsed[r], 'bins\n'
+	print '\n\n\n\n\n\n---------------------- Results: ----------------------\n'
+	DataSet = result_BinUsed.keys()
+	DataSet.sort()
+	for r in DataSet:
+		print r, ' consumes ', result_BinUsed[r], 'bins\n'
 		
 
 

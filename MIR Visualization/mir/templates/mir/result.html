@@ -45,7 +45,7 @@
 		<div style="border: 3px solid; position: absolute; top: {{ i }}px; left: 20px; width: {{ binW }}px; height: {{ binH }}px">
 			{% for jindex, t, l, w, h in jobs %}
 			<div style="border: 1px solid; background: #DDDDDD; position: absolute; top: {{ t }}px; left: {{ l }}px; width: {{ w }}px; height: {{ h }}px">
-				{{ jindex }} {{ w }} * {{ h }}
+				#{{ jindex }} [W:{{ w }}, H:{{ h }}]
 			</div>
 			{% endfor %}
 		</div>
